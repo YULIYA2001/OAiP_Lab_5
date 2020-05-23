@@ -17,13 +17,13 @@ __fastcall TForm1::TForm1(TComponent* Owner)
 }
 
 //кнопка "Создать" для очереди
-void __fastcall TForm1::Button1Click(TObject *Sender)
+void __fastcall TForm1::CreateButtonClick(TObject *Sender)
 {
 	//удаление прошлой очереди
 	queue.~Queue();
-	ListBox1->Clear();
+	ShowListBox->Clear();
 	//если не введен размер
-	if (Edit1->Text == "" || Edit1->Text == "0")
+	if (QueueSizeEdit->Text == "" || QueueSizeEdit->Text == "0")
 	{
 		Application->Title = "Подсказка";
 		ShowMessage("1. Введите \"Размер очереди\""
@@ -31,7 +31,7 @@ void __fastcall TForm1::Button1Click(TObject *Sender)
 			"\n3. Нажмите кнопку \"Создать\"");
 	}   
 	//если размер не соответствует кол-ву введенных элементов
-	else if (Memo1->Lines->Count != StrToInt(Edit1->Text))
+	else if (AddQueueMemo->Lines->Count != StrToInt(QueueSizeEdit->Text))
 	{
 		Application->Title = "Подсказка";
 		ShowMessage("1. Запишите элементы в поле \"Очередь\""
@@ -41,18 +41,18 @@ void __fastcall TForm1::Button1Click(TObject *Sender)
 	else
 	{
 		bool check = true;     //идентификатор ввода пустой строки
-		int length = Memo1->Lines->Count;
+		int length = AddQueueMemo->Lines->Count;
 		//проверка ввода пустой строки
 		for (int i = 0; i < length; i++)
 		{                                              
-			if (Memo1->Lines->Strings[i] == "")
+			if (AddQueueMemo->Lines->Strings[i] == "")
 			{
 				check = false;
 			}
-			int strLength = Memo1->Lines->Strings[i].Length();
+			int strLength = AddQueueMemo->Lines->Strings[i].Length();
 			for (int j = 2; j <= strLength; j++)
 			{
-				if (Memo1->Lines->Strings[i][j] == '-')
+				if (AddQueueMemo->Lines->Strings[i][j] == '-')
 					check = false;	
             }
 		}
@@ -64,38 +64,38 @@ void __fastcall TForm1::Button1Click(TObject *Sender)
 		else
 		{
 			for (int i = 0; i < length; i++)
-			{                                              
-				int x = StrToInt(Memo1->Lines->Strings[i]);
+			{
+				int x = StrToInt(AddQueueMemo->Lines->Strings[i]);
 				queue.Add(x);
 			}
 		}
-		Memo1->Clear();
-		ListBox1->Clear();
-		//Button2Click(Sender);
+		AddQueueMemo->Clear();
+		ShowListBox->Clear();
+		//PrintButtonClick(Sender);
 	}
 }
 
 //кнопка "Печать"
-void __fastcall TForm1::Button2Click(TObject *Sender)
+void __fastcall TForm1::PrintButtonClick(TObject *Sender)
 {
-	ListBox1->Clear();
-	queue.Show(ListBox1);
-	if (ListBox1->Items->Count == 0)
-		ListBox1->Items->Add("Очередь пуста");
+	ShowListBox->Clear();
+	queue.Show(ShowListBox);
+	if (ShowListBox->Items->Count == 0)
+		ShowListBox->Items->Add("Очередь пуста");
 }
 
 //кнопка "Добавить в конец"
-void __fastcall TForm1::Button3Click(TObject *Sender)
+void __fastcall TForm1::AddToEndButtonClick(TObject *Sender)
 {
-	ListBox1->Clear();
-	if (Edit2->Text != "")
+	ShowListBox->Clear();
+	if (AddElementEdit->Text != "")
 	{
-		ListBox1->Clear();
-		int x = StrToInt(Edit2->Text);
+		ShowListBox->Clear();
+		int x = StrToInt(AddElementEdit->Text);
 		queue.Add(x);
-		Edit1->Text = IntToStr(StrToInt(Edit1->Text) + 1);
-		Edit2->Text = "";
-		Button2Click(Sender);			
+		QueueSizeEdit->Text = IntToStr(StrToInt(QueueSizeEdit->Text) + 1);
+		AddElementEdit->Text = "";
+		PrintButtonClick(Sender);
 	}
 	else 
 	{
@@ -105,51 +105,51 @@ void __fastcall TForm1::Button3Click(TObject *Sender)
 }
 
 //кнопка "Извлечь из начала"
-void __fastcall TForm1::Button4Click(TObject *Sender)
+void __fastcall TForm1::TakeFromBeginButtonClick(TObject *Sender)
 {
-	ListBox1->Clear();
-	queue.Delete(Edit1);
-	Button2Click(Sender);
+	ShowListBox->Clear();
+	queue.Delete(QueueSizeEdit);
+	PrintButtonClick(Sender);
 }
 
 //кнопка "Проверить пустоту"
-void __fastcall TForm1::Button5Click(TObject *Sender)
+void __fastcall TForm1::IsEmptyButtonClick(TObject *Sender)
 {
-   ListBox1->Clear();
-   queue.IsEmpty(Edit1);
+   ShowListBox->Clear();
+   queue.IsEmpty(QueueSizeEdit);
 }
 
 //кнопка "Очистить"
-void __fastcall TForm1::Button6Click(TObject *Sender)
+void __fastcall TForm1::CleanButtonClick(TObject *Sender)
 {
 	queue.~Queue();
-	ListBox1->Clear();
-	Edit1->Text = "0";
+	ShowListBox->Clear();
+	QueueSizeEdit->Text = "0";
 	Application->Title = "Очистка";
 	ShowMessage("Очередь пуста");	
 }
 
 //переход в Memo1 при нажатии Enter после ввода размера очереди
-void __fastcall TForm1::Edit1KeyPress(TObject *Sender, System::WideChar &Key)
+void __fastcall TForm1::QueueSizeEditKeyPress(TObject *Sender, System::WideChar &Key)
 {
 	//если введен enter
 	if(Key == VK_RETURN)
 	{
 		Key = 0;
-		Memo1->SetFocus();
+		AddQueueMemo->SetFocus();
 	}	
 }
 
 MyList myList;
 
 //кнопка "Решение" для списка
-void __fastcall TForm1::Button7Click(TObject *Sender)
+void __fastcall TForm1::MySolutionButtonClick(TObject *Sender)
 {
 	//удаление прошлого списка
 	myList.~MyList();
-	ListBox2->Clear();
+	ShowMyTaskListBox->Clear();
 	//если не введен размер
-	if (Edit3->Text == "" || Edit3->Text == "0")
+	if (ListSizeEdit->Text == "" || ListSizeEdit->Text == "0")
 	{
 		Application->Title = "Подсказка";
 		ShowMessage("Введите \"Размер списка\"");
@@ -160,23 +160,23 @@ void __fastcall TForm1::Button7Click(TObject *Sender)
 		ShowMessage("\tСоздать двухсвязный список из случайных целых чисел."
 			" Удалить все отрицательные элементы списка");
 		//случайное заполнение
-		int amount = StrToInt(Edit3->Text);
+		int amount = StrToInt(ListSizeEdit->Text);
 		randomize();
 		for (int i = 0; i < amount; i++)
 		{
 			myList.Add(rand() % 101 - 50); //заполнение числами от -50 до 50
 		}
-		ListBox2->Items->Add("Исходный:");
-		myList.Show(ListBox2);
+		ShowMyTaskListBox->Items->Add("Исходный:");
+		myList.Show(ShowMyTaskListBox);
 		myList.RemoveMinus();
-		ListBox2->Items->Add("Без отрицат.");
-		ListBox2->Items->Add("элементов:");
-		myList.Show(ListBox2);
+		ShowMyTaskListBox->Items->Add("Без отрицат.");
+		ShowMyTaskListBox->Items->Add("элементов:");
+		myList.Show(ShowMyTaskListBox);
 	}
 }
 
 //проверка на ввод целых в Memo1
-void __fastcall TForm1::Memo1KeyPress(TObject *Sender, System::WideChar &Key)
+void __fastcall TForm1::AddQueueMemoKeyPress(TObject *Sender, System::WideChar &Key)
 {
 	if ((Key >= '0' && Key <= '9') || Key == '-' || Key == VK_BACK 
 		|| Key == VK_RETURN);

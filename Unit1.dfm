@@ -66,17 +66,17 @@ object Form1: TForm1
     Font.Style = [fsBold, fsItalic]
     ParentFont = False
   end
-  object Edit1: TEdit
-    Left = 8
+  object QueueSizeEdit: TEdit
+    Left = 9
     Top = 27
     Width = 73
     Height = 21
     NumbersOnly = True
     TabOrder = 0
     Text = '0'
-    OnKeyPress = Edit1KeyPress
+    OnKeyPress = QueueSizeEditKeyPress
   end
-  object Edit2: TEdit
+  object AddElementEdit: TEdit
     Left = 159
     Top = 136
     Width = 73
@@ -84,7 +84,7 @@ object Form1: TForm1
     NumbersOnly = True
     TabOrder = 1
   end
-  object Button1: TButton
+  object CreateButton: TButton
     Left = 120
     Top = 58
     Width = 153
@@ -94,54 +94,54 @@ object Form1: TForm1
     ParentShowHint = False
     ShowHint = True
     TabOrder = 2
-    OnClick = Button1Click
+    OnClick = CreateButtonClick
   end
-  object Button2: TButton
+  object PrintButton: TButton
     Left = 120
     Top = 89
     Width = 153
     Height = 25
     Caption = #1055#1077#1095#1072#1090#1100
     TabOrder = 3
-    OnClick = Button2Click
+    OnClick = PrintButtonClick
   end
-  object Button3: TButton
+  object AddToEndButton: TButton
     Left = 120
     Top = 163
     Width = 153
     Height = 25
     Caption = #1044#1086#1073#1072#1074#1080#1090#1100' ('#1074' '#1082#1086#1085#1077#1094')'
     TabOrder = 4
-    OnClick = Button3Click
+    OnClick = AddToEndButtonClick
   end
-  object Button4: TButton
+  object TakeFromBeginButton: TButton
     Left = 120
     Top = 194
     Width = 153
     Height = 25
     Caption = #1048#1079#1074#1083#1077#1095#1100' ('#1080#1079' '#1085#1072#1095#1072#1083#1072')'
     TabOrder = 5
-    OnClick = Button4Click
+    OnClick = TakeFromBeginButtonClick
   end
-  object Button5: TButton
+  object IsEmptyButton: TButton
     Left = 120
     Top = 225
     Width = 153
     Height = 25
     Caption = #1055#1088#1086#1074#1077#1088#1080#1090#1100' '#1087#1091#1089#1090#1086#1090#1091
     TabOrder = 6
-    OnClick = Button5Click
+    OnClick = IsEmptyButtonClick
   end
-  object Button6: TButton
+  object CleanButton: TButton
     Left = 120
     Top = 256
     Width = 153
     Height = 25
     Caption = #1054#1095#1080#1089#1090#1080#1090#1100
     TabOrder = 7
-    OnClick = Button6Click
+    OnClick = CleanButtonClick
   end
-  object ListBox1: TListBox
+  object ShowListBox: TListBox
     Left = 304
     Top = 35
     Width = 89
@@ -150,14 +150,14 @@ object Form1: TForm1
     ItemHeight = 13
     TabOrder = 8
   end
-  object Memo1: TMemo
+  object AddQueueMemo: TMemo
     Left = 8
     Top = 76
     Width = 73
     Height = 239
     ScrollBars = ssVertical
     TabOrder = 9
-    OnKeyPress = Memo1KeyPress
+    OnKeyPress = AddQueueMemoKeyPress
   end
   object Panel1: TPanel
     Left = 413
@@ -187,7 +187,7 @@ object Form1: TForm1
       Height = 13
       Caption = #1056#1072#1079#1084#1077#1088' '#1089#1087#1080#1089#1082#1072
     end
-    object Edit3: TEdit
+    object ListSizeEdit: TEdit
       Left = 38
       Top = 39
       Width = 59
@@ -196,16 +196,16 @@ object Form1: TForm1
       TabOrder = 0
       Text = '0'
     end
-    object Button7: TButton
+    object MySolutionButton: TButton
       Left = 19
       Top = 66
       Width = 92
       Height = 25
       Caption = #1056#1077#1096#1077#1085#1080#1077
       TabOrder = 1
-      OnClick = Button7Click
+      OnClick = MySolutionButtonClick
     end
-    object ListBox2: TListBox
+    object ShowMyTaskListBox: TListBox
       Left = 19
       Top = 97
       Width = 92

@@ -13,36 +13,36 @@
 class TForm1 : public TForm
 {
 __published:	// IDE-managed Components
-	TEdit *Edit1;
-	TEdit *Edit2;
+	TEdit *QueueSizeEdit;
+	TEdit *AddElementEdit;
 	TLabel *Label1;
-	TButton *Button1;
-	TButton *Button2;
-	TButton *Button3;
-	TButton *Button4;
-	TButton *Button5;
-	TButton *Button6;
+	TButton *CreateButton;
+	TButton *PrintButton;
+	TButton *AddToEndButton;
+	TButton *TakeFromBeginButton;
+	TButton *IsEmptyButton;
+	TButton *CleanButton;
 	TLabel *Label2;
 	TLabel *Label3;
-	TListBox *ListBox1;
+	TListBox *ShowListBox;
 	TLabel *Label4;
-	TMemo *Memo1;
+	TMemo *AddQueueMemo;
 	TLabel *Label5;
 	TPanel *Panel1;
 	TLabel *Label6;
 	TLabel *Label7;
-	TEdit *Edit3;
-	TButton *Button7;
-	TListBox *ListBox2;
-	void __fastcall Button1Click(TObject *Sender);
-	void __fastcall Button2Click(TObject *Sender);
-	void __fastcall Button3Click(TObject *Sender);
-	void __fastcall Button4Click(TObject *Sender);
-	void __fastcall Button5Click(TObject *Sender);
-	void __fastcall Button6Click(TObject *Sender);
-	void __fastcall Edit1KeyPress(TObject *Sender, System::WideChar &Key);
-	void __fastcall Button7Click(TObject *Sender);
-	void __fastcall Memo1KeyPress(TObject *Sender, System::WideChar &Key);
+	TEdit *ListSizeEdit;
+	TButton *MySolutionButton;
+	TListBox *ShowMyTaskListBox;
+	void __fastcall CreateButtonClick(TObject *Sender);
+	void __fastcall PrintButtonClick(TObject *Sender);
+	void __fastcall AddToEndButtonClick(TObject *Sender);
+	void __fastcall TakeFromBeginButtonClick(TObject *Sender);
+	void __fastcall IsEmptyButtonClick(TObject *Sender);
+	void __fastcall CleanButtonClick(TObject *Sender);
+	void __fastcall QueueSizeEditKeyPress(TObject *Sender, System::WideChar &Key);
+	void __fastcall MySolutionButtonClick(TObject *Sender);
+	void __fastcall AddQueueMemoKeyPress(TObject *Sender, System::WideChar &Key);
 private:	// User declarations
 public:		// User declarations
 	__fastcall TForm1(TComponent* Owner);
